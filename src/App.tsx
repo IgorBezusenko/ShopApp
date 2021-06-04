@@ -5,16 +5,18 @@ import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {Header} from "./components/Header/Header";
 import {Main} from "./components/Main/Main";
-import {Products} from "./components/Products/Products";
+import {Items} from "./components/Items/Items";
+import {Cart} from "./components/Cart/Cart";
+import {Login} from "./components/Login/Login";
 
 const App: React.FC = () => (
     <div className="app">
         <Header/>
         <Switch>
-            <Route path={"/main"} component={Main}/>
-            <Route path={"/products"} component={Products}/>
-            <Route path={"/cart"} component={Main}/>
-            <Route path={"/login"} component={Main}/>
+            <Route exact path={"/"} component={Main}/>
+            <Route path={"/items"} component={Items}/>
+            <Route path={"/cart"} component={Cart}/>
+            <Route path={"/login"} component={Login}/>
             <Route path={"/*"} render={()=>"Not Found"}/>
         </Switch>
     </div>

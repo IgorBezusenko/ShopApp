@@ -1,12 +1,14 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import thunkMiddleware from "redux-thunk";
 import {cartReducer} from "./cartReducer";
-import {productsReducer} from "./productsReducer";
+import {itemsReducer} from "./itemsReducer";
 
 const rootReducer = combineReducers({
-    products: productsReducer,
-    cart:cartReducer
+    itemsPage: itemsReducer,
+    cartPage:cartReducer
 })
+
+export type AppStateType = ReturnType<typeof rootReducer>
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
