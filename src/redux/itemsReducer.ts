@@ -8,21 +8,21 @@ const SET_VIEW_ITEMS = "products/SET_VIEW_ITEMS"
 
 const InitialState = {
     items: [] as Array<ProductsType> | null,
-    viewItem: {} as ProductsType,
+    viewItem: null as ProductsType | null,
     isFetching: false
 }
 
-export const itemsReducer = (state = InitialState, action: any): InitialStateType => {
+export const itemsReducer = (state = InitialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case SET_ITEMS:
             return {
                 ...state,
                 items: [...action.items]
             }
-            case SET_VIEW_ITEMS:
+        case SET_VIEW_ITEMS:
             return {
                 ...state,
-                viewItem: {...action.viewItem}
+                viewItem: action.viewItem
             }
         case TOGGLE_IS_FETCHING:
             return {
@@ -37,18 +37,9 @@ export const itemsReducer = (state = InitialState, action: any): InitialStateTyp
 
 
 export const itemsActions = {
-    setItems: (items: any) => ({
-        type: SET_ITEMS,
-        items
-    }),
-    setViewItems: (viewItem: any) => ({
-        type: SET_VIEW_ITEMS,
-        viewItem
-    }),
-    toggleIsFetching: (isFetching: boolean) => ({
-        type: TOGGLE_IS_FETCHING,
-        isFetching
-    })
+    setItems: (items: Array<ProductsType>) => ({type: SET_ITEMS, items} as const),
+    setViewItems: (viewItem: ProductsType | null) => ({type: SET_VIEW_ITEMS, viewItem} as const),
+    toggleIsFetching: (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 }
 
 export const getItems = (): ThunkType => async (dispatch) => {
@@ -58,7 +49,7 @@ export const getItems = (): ThunkType => async (dispatch) => {
     dispatch(itemsActions.toggleIsFetching(false))
 }
 
-export const getViewItem = (id: number): ThunkType => async (dispatch: any) => {
+export const getViewItem = (id: number): ThunkType => async (dispatch) => {
     dispatch(itemsActions.toggleIsFetching(true))
     const data = await productAPI.getProductById(id)
     dispatch(itemsActions.setViewItems(data))

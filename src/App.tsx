@@ -8,7 +8,7 @@ import {Main} from "./components/Main/Main";
 import {Items} from "./components/Items/Items";
 import {Cart} from "./components/Cart/Cart";
 import {Login} from "./components/Login/Login";
-import {ViewItem} from "./components/Items/ViewItem";
+import {ViewItem} from "./components/Items/ViewItem/ViewItem";
 
 const App: React.FC = () => (
     <div className="app">

@@ -1,0 +1,21 @@
+.item{
+    width: 900px;
+    display: flex;
+    background-color: aquamarine;
+    padding: 8px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.image{
+    width: 50%;
+    margin-right: 10px;
+}
+.image img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.description{
+    width: 50%;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {ProductsType} from "../../types";
 import css from "./Items.module.css"
 
@@ -18,7 +18,9 @@ export const Item: React.FC<PropsType> = ({item}) => {
                     <h2>Price: {item.price} $</h2>
                 </div>
                 <div>
-                    <button>View</button>
+                    <Link to={"/view-item/" + item.id}>
+                        <button>View</button>
+                    </Link>
                     <button>Add to cart</button>
                 </div>
                 <p>{item.title}</p>

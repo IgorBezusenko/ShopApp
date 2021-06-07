@@ -15,3 +15,10 @@ export type ProductsType = {
     description:string,
     image:string
 }
+
+export type CartType = {
+    id:number,
+    title:string,
+    price:string,
+    image:string
+}

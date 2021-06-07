@@ -8,7 +8,7 @@ export const instance = axios.create({
 export const productAPI = {
     getProducts() {
         return instance
-            .get<ProductsType>(`products`)
+            .get<Array<ProductsType>>(`products`)
             .then((res) => {
                 console.log(res.data)
                 return res.data
@@ -16,7 +16,7 @@ export const productAPI = {
     },
     getProductById(id:number) {
         return instance
-            .get<ProductsType>(`products/${id}`)
+            .get<ProductsType | null>(`products/${id}`)
             .then((res) => {
                 console.log(res.data)
                 return res.data
