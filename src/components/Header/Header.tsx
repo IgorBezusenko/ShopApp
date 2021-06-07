@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
         <h2>BIS!</h2>
         <ul className={css.list + " " + css.row}>
             <li><Home/><Link to={"/"}>Main</Link></li>
-            <li><Grid/><Link to={"/items"}>Items</Link></li>
+            <li><Grid/><Link to={"/products"}>Products</Link></li>
             <li><ShoppingCart/><Link to={"/cart"}>Cart</Link></li>
             <li><LogIn/><Link to={"/login"}>Login</Link></li>
         </ul>

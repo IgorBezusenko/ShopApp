@@ -3,6 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import {getItems} from "../../redux/itemsReducer";
 import {Spinner} from "../Spiner/Spinner";
+import {Item} from "./Item";
+
+import css from "./Items.module.css"
 
 export const Items: React.FC = () => {
     const dispatch = useDispatch()
@@ -12,7 +15,7 @@ export const Items: React.FC = () => {
 
     useEffect(() => {
         dispatch(getItems())
-    }, [])
+    },[])
 
     if (isFetching) {
         return <Spinner/>
@@ -20,19 +23,16 @@ export const Items: React.FC = () => {
 
     return (
         <>
-            <h1>Items</h1>
-            {
-                items && items.map((p, idx) => {
-                    return (
-                        <div key={idx}>
-                            <img src={p.thumbnailUrl} alt="Cover"/>
-                            <h3>{p.title}</h3>
-                            <button>Add to cart</button>
-                        </div>
-
-                    )
-                })
-            }
+            <h1>Products</h1>
+            <div className={css.list}>
+                {
+                    items && items.map((item) => {
+                        return (
+                            <Item key={item.id} item={item}/>
+                        )
+                    })
+                }
+            </div>
         </>
     )
 }

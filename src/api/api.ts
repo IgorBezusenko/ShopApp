@@ -1,13 +1,21 @@
 import axios from "axios";
 
 export const instance = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com/",
+    baseURL: "https://fakestoreapi.com/",
 });
 
 export const productAPI = {
     getProducts() {
         return instance
-            .get<GetProductsType>(`photos?_limit=5`)
+            .get<GetProductsType>(`products`)
+            .then((res) => {
+                console.log(res.data)
+                return res.data
+            });
+    },
+    getProductById(id:number) {
+        return instance
+            .get<GetProductsType>(`products/${id}`)
             .then((res) => {
                 console.log(res.data)
                 return res.data
@@ -17,9 +25,10 @@ export const productAPI = {
 };
 
 type GetProductsType = {
-    albumId: number,
-    id: number,
-    title: string,
-    url: string,
-    thumbnailUrl: string
+    id:number,
+    title:string,
+    price:string,
+    category:string,
+    description:string,
+    image:string
 }
