@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ProductsType} from "../types";
 
 export const instance = axios.create({
     baseURL: "https://fakestoreapi.com/",
@@ -7,7 +8,7 @@ export const instance = axios.create({
 export const productAPI = {
     getProducts() {
         return instance
-            .get<GetProductsType>(`products`)
+            .get<ProductsType>(`products`)
             .then((res) => {
                 console.log(res.data)
                 return res.data
@@ -15,20 +16,10 @@ export const productAPI = {
     },
     getProductById(id:number) {
         return instance
-            .get<GetProductsType>(`products/${id}`)
+            .get<ProductsType>(`products/${id}`)
             .then((res) => {
                 console.log(res.data)
                 return res.data
             });
     },
-
 };
-
-type GetProductsType = {
-    id:number,
-    title:string,
-    price:string,
-    category:string,
-    description:string,
-    image:string
-}

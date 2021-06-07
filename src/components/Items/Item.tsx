@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {ItemsType} from "../../types";
+import {ProductsType} from "../../types";
 import css from "./Items.module.css"
 
 type PropsType = {
-    item: ItemsType
+    item: ProductsType
 }
 
 export const Item: React.FC<PropsType> = ({item}) => {

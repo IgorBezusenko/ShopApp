@@ -1,15 +1,14 @@
 import {productAPI} from "../api/api";
-import {ItemsType} from "../types";
+import {BaseThunkType, InferActionsTypes, ProductsType} from "../types";
 
 const SET_ITEMS = "products/SET_ITEMS"
 const TOGGLE_IS_FETCHING = "products/TOGGLE_IS_FETCHING"
 const SET_VIEW_ITEMS = "products/SET_VIEW_ITEMS"
 
-type InitialStateType = typeof InitialState
 
 const InitialState = {
-    items: [] as Array<ItemsType> | null,
-    viewItem:{},
+    items: [] as Array<ProductsType> | null,
+    viewItem: {} as ProductsType,
     isFetching: false
 }
 
@@ -36,28 +35,36 @@ export const itemsReducer = (state = InitialState, action: any): InitialStateTyp
     }
 }
 
-export const setItems = (items: any) => ({
-    type: SET_ITEMS,
-    items
-})
-export const setViewItems = (viewItem: any) => ({
-    type: SET_VIEW_ITEMS,
-    viewItem
-})
-export const toggleIsFetching = (isFetching: boolean) => ({
-    type: TOGGLE_IS_FETCHING,
-    isFetching
-})
 
-export const getItems = () => async (dispatch: any) => {
-    dispatch(toggleIsFetching(true))
+export const itemsActions = {
+    setItems: (items: any) => ({
+        type: SET_ITEMS,
+        items
+    }),
+    setViewItems: (viewItem: any) => ({
+        type: SET_VIEW_ITEMS,
+        viewItem
+    }),
+    toggleIsFetching: (isFetching: boolean) => ({
+        type: TOGGLE_IS_FETCHING,
+        isFetching
+    })
+}
+
+export const getItems = (): ThunkType => async (dispatch) => {
+    dispatch(itemsActions.toggleIsFetching(true))
     const data = await productAPI.getProducts()
-    dispatch(setItems(data))
-    dispatch(toggleIsFetching(false))
+    dispatch(itemsActions.setItems(data))
+    dispatch(itemsActions.toggleIsFetching(false))
 }
-export const getViewItems = (id:number) => async (dispatch: any) => {
-    dispatch(toggleIsFetching(true))
+
+export const getViewItem = (id: number): ThunkType => async (dispatch: any) => {
+    dispatch(itemsActions.toggleIsFetching(true))
     const data = await productAPI.getProductById(id)
-    dispatch(setViewItems(data))
-    dispatch(toggleIsFetching(false))
+    dispatch(itemsActions.setViewItems(data))
+    dispatch(itemsActions.toggleIsFetching(false))
 }
+
+type InitialStateType = typeof InitialState
+type ActionsTypes = InferActionsTypes<typeof itemsActions>
+type ThunkType = BaseThunkType<ActionsTypes>
