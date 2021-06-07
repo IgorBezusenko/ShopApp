@@ -10,15 +10,9 @@ export type BaseThunkType<A extends Action = Action, R = Promise<void>> = ThunkA
 export type ProductsType = {
     id:number,
     title:string,
-    price:string,
+    price:number,
     category:string,
     description:string,
     image:string
 }
 
-export type CartType = {
-    id:number,
-    title:string,
-    price:string,
-    image:string
-}

@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../redux/store";
 import {getItems} from "../../redux/itemsReducer";
 import {Spinner} from "../Spiner/Spinner";
 import {Item} from "./Item";
 
 import css from "./Items.module.css"
+import {AppStateType} from "../../types";
 
 export const Items: React.FC = () => {
     const dispatch = useDispatch()

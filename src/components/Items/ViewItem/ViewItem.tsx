@@ -6,6 +6,7 @@ import {Spinner} from "../../Spiner/Spinner";
 import {AppStateType} from "../../../types";
 
 import css from "./ViewItem.module.css"
+import {cartActions} from "../../../redux/cartReducer";
 
 type MatchParams = { id: string }
 
@@ -17,6 +18,10 @@ export const ViewItem: React.FC<RouteComponentProps<MatchParams>> = (props) => {
         dispatch(getViewItem(+props.match.params.id))
     }, [])
 
+    const onAddToCart = (item: any) => {
+        console.log(item)
+        dispatch(cartActions.addItemToCart(item))
+    }
     if (isFetching) {
         return <Spinner/>
     }
@@ -31,7 +36,7 @@ export const ViewItem: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                             <h3>{viewItem.title}</h3>
                             <p>{viewItem.description}</p>
                             <h2>Price: {viewItem.price} $</h2>
-                            <button>Add to cart </button>
+                            <button onClick={() => onAddToCart(viewItem)}>Add to cart</button>
                             <Link to={"/products"}>Go Back</Link>
                         </div>
                     </div>
