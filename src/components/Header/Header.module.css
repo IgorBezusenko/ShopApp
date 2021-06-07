@@ -14,13 +14,14 @@
 }
 
 .list li {
-    align-items: center;
-    display: flex;
     padding: 8px;
     margin-left: 10px;
 }
 
-.list li a{
-    margin-left: 5px;
+.list li a {
     color: #000;
+}
+
+.icon {
+    margin-right: 5px;
 }
