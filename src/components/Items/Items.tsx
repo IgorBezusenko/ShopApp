@@ -22,8 +22,8 @@ export const Items: React.FC = () => {
     }
 
     return (
-        <>
-            <h1>Products</h1>
+        <div className={css.container}>
+            <div><h1>Products</h1></div>
             <div className={css.list}>
                 {
                     items && items.map((item) => {
@@ -33,6 +33,6 @@ export const Items: React.FC = () => {
                     })
                 }
             </div>
-        </>
+        </div>
     )
 }

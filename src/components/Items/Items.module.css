@@ -1,13 +1,17 @@
+/*.container{*/
+
+
+/*    width: 900px;*/
+/*    margin: 0 auto;*/
+/*}*/
 .list{
-    width: 900px;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
 }
 
 .item{
     background-color: aquamarine;
-    width: 200px;
+    width: 184px;
     margin-right: 10px;
     margin-bottom: 10px;
     padding: 8px;

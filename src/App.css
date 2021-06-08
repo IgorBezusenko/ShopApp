@@ -14,9 +14,12 @@ ul {
 }
 
 a {
+    color: #000;
     text-decoration: none;
 }
 
 .app {
     padding: 16px;
+    width: 1200px;
+    margin: 0 auto;
 }

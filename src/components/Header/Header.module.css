@@ -2,6 +2,11 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
+    width: 900px;
+    margin: 0 auto;
+}
+.logo{
+    /*margin-left: 50px;*/
 }
 
 .row {
@@ -10,7 +15,7 @@
 }
 
 .list {
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 
 .list li {
@@ -26,18 +31,19 @@
 
 .icon {
     margin-right: 5px;
-
 }
 
 .counter {
     color: #fff;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
     background-color: red;
-    width: 20px;
-    text-align: center;
+    padding: 2px 4px 2px 4px;
     border-radius: 50%;
     position: absolute;
-    top: 23px;
-    left: -8px;
+    top: 27px;
+    left: -5px;
     z-index: 1000;
 
 }

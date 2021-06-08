@@ -5,16 +5,7 @@ const REMOVE_ITEM_FROM_CART = "cart/REMOVE_ITEM_FROM_CART"
 const BUY_ALL = "cart/BUY_ALL"
 
 const InitialState = {
-    cartItems: [
-        {
-            category: "men's clothing",
-            description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-            id: 1,
-            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-            price: 109.95,
-            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        }
-    ] as Array<ProductsType>
+    cartItems: [] as Array<ProductsType>
 }
 
 

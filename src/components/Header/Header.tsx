@@ -10,12 +10,12 @@ export const Header: React.FC = () => {
     const cartItems = useSelector((state: AppStateType) => state.cartPage.cartItems)
 
     return (<div className={css.header}>
-        <h2>BIS!</h2>
+        <Link className={css.logo} to={"/"}><h2>BIS!</h2></Link>
         <ul className={css.list + " " + css.row}>
             <li><Link className={css.row} to={"/"}><Home className={css.icon}/><p>Main</p></Link></li>
             <li><Link className={css.row} to={"/products"}><Grid className={css.icon}/><p>Products</p></Link></li>
             <li><Link className={css.row} to={"/cart"}>
-                { cartItems.length!==0 && <strong className={css.counter}>{cartItems.length}</strong>}
+                { cartItems.length!==0 && <div className={css.counter}>{cartItems.length}</div>}
                 <ShoppingCart className={css.icon}/><p>Cart</p></Link></li>
             <li><Link className={css.row} to={"/login"}><LogIn className={css.icon}/><p>Login</p></Link></li>
         </ul>

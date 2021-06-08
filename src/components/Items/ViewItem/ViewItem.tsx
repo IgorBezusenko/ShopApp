@@ -26,7 +26,7 @@ export const ViewItem: React.FC<RouteComponentProps<MatchParams>> = (props) => {
         return <Spinner/>
     }
     return (
-        <>
+        <div className={css.container}>
             <Link to={"/products"}>Go Back</Link>
             {
                 viewItem ?
@@ -42,6 +42,6 @@ export const ViewItem: React.FC<RouteComponentProps<MatchParams>> = (props) => {
                     </div>
                     : <div>Product by id:{props.match.params.id} dose not exist!</div>
             }
-        </>
+        </div>
     )
 }
