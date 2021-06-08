@@ -1,0 +1,44 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.list {
+    /*min-width: 500px;*/
+}
+
+.list__empty {
+    width: max-content;
+    margin: 20% auto;
+}
+
+.cart__price {
+    margin-right: 50px;
+
+}
+
+.item {
+    background-color: cadetblue;
+    padding: 8px 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.item__image {
+    margin-right: 20px;
+}
+
+.item__description {
+
+}
+
+.btn_group {
+    margin-left: auto;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}

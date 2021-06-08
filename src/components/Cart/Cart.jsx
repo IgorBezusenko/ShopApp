@@ -2,18 +2,33 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../types";
 
+import css from "./Cart.module.css"
+
 export const Cart: React.FC = () => {
-    const cartState = useSelector((state: AppStateType) => state.cartPage.cartState)
+    const cartItems = useSelector((state: AppStateType) => state.cartPage.cartItems)
     return (
-        <>
-            <h1>Cart</h1>
-            <ul>
-                {cartState && cartState.map((item) => {
+        <div className={css.cart}>
+            <div className={css.row}>
+                <h1>Cart</h1>
+                <div className={css.cart__price}><strong>Total price:</strong></div>
+            </div>
+            <ul className={css.list}>
+                {cartItems.length ? cartItems.map((item) => {
                     return (
-                        <li key={item.id}><img width={24} src={item.image} alt="Cover"/> <p>{item.title}</p><p>{item.price} $</p></li>
+                        <li key={item.id} className={css.item + " " + css.row}>
+                            <div className={css.item__image}><img width={45} src={item.image} alt="Cover"/></div>
+                            <div className={css.item__description}>
+                                <p>{item.title}</p>
+                                <p>{item.price} $</p>
+                            </div>
+                            <div className={css.btn_group}>
+                                <button>Buy</button>
+                                <button>Delete</button>
+                            </div>
+                        </li>
                     )
-                })}
+                }) : <div className={css.list__empty}>Cart is empty</div>}
             </ul>
-        </>
+        </div>
     )
 }
