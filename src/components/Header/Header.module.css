@@ -16,12 +16,28 @@
 .list li {
     padding: 8px;
     margin-left: 10px;
+
 }
 
 .list li a {
     color: #000;
+    position: relative;
 }
 
 .icon {
     margin-right: 5px;
+
+}
+
+.counter {
+    color: #fff;
+    background-color: red;
+    width: 20px;
+    text-align: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 23px;
+    left: -8px;
+    z-index: 1000;
+
 }

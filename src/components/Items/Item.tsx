@@ -11,10 +11,11 @@ type PropsType = {
 
 export const Item: React.FC<PropsType> = ({item}) => {
     const dispatch = useDispatch()
-    const onAddToCart = (item:any)=>{
-        console.log(item)
+
+    const onAddToCart = (item:ProductsType)=>{
         dispatch(cartActions.addItemToCart(item))
     }
+
     return (
         <>
             <div className={css.item}>

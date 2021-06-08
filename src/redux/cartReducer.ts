@@ -1,28 +1,45 @@
 import {InferActionsTypes, ProductsType} from "../types";
 
 const ADD_ITEM_TO_CART = "cart/ADD_ITEM_TO_CART"
+const REMOVE_ITEM_FROM_CART = "cart/REMOVE_ITEM_FROM_CART"
+const BUY_ALL = "cart/BUY_ALL"
 
 const InitialState = {
     cartItems: [
-        // {
-        //     category: "men's clothing",
-        //     description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-        //     id: 1,
-        //     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-        //     price: 109.95,
-        //     title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        // }
+        {
+            category: "men's clothing",
+            description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+            id: 1,
+            image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+            price: 109.95,
+            title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+        }
     ] as Array<ProductsType>
 }
 
 
 export const cartReducer = (state = InitialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case ADD_ITEM_TO_CART:
+        case ADD_ITEM_TO_CART: {
+            const item = {
+                ...action.item,
+                id: Date.now()
+            }
             return {
                 ...state,
-                cartItems: [...state.cartItems, action.item]
+                cartItems: [...state.cartItems, item]
             }
+        }
+        case REMOVE_ITEM_FROM_CART:
+            return {
+                ...state,
+                cartItems: state.cartItems.filter((item) => item.id !== action.itemId)
+            }
+
+        case BUY_ALL:
+            return {
+                ...state,
+                cartItems: []            }
 
         default:
             return state
@@ -30,7 +47,9 @@ export const cartReducer = (state = InitialState, action: ActionsTypes): Initial
 }
 
 export const cartActions = {
-    addItemToCart: (item:ProductsType) => ({type: ADD_ITEM_TO_CART, item} as const)
+    addItemToCart: (item:ProductsType) => ({type: ADD_ITEM_TO_CART, item} as const),
+    removeItemFromCart: (itemId:number) => ({type: REMOVE_ITEM_FROM_CART, itemId} as const),
+    buyAll: () => ({type: BUY_ALL} as const)
 }
 
 type InitialStateType = typeof InitialState

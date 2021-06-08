@@ -10,7 +10,6 @@ export const productAPI = {
         return instance
             .get<Array<ProductsType>>(`products`)
             .then((res) => {
-                console.log(res.data)
                 return res.data
             });
     },
@@ -18,7 +17,6 @@ export const productAPI = {
         return instance
             .get<ProductsType | null>(`products/${id}`)
             .then((res) => {
-                console.log(res.data)
                 return res.data
             });
     },
