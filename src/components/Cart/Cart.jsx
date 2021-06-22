@@ -12,19 +12,21 @@ export const Cart: React.FC = () => {
     const onRemoveFromCart = (itemId)=>{
         dispatch(cartActions.removeItemFromCart(itemId))
     }
-    const onBurAll = ()=>{
+    const onBuyAll = ()=>{
         dispatch(cartActions.buyAll())
     }
 
     const itemPrice = cartItems.reduce(
         (totalEl, el) => totalEl + el.price,
         0
-    );
+    ).toFixed(2);
     return (
         <div className={css.cart}>
             <div className={css.row}>
                 <h1>Cart</h1>
-                <div className={css.cart__price}> <button onClick={()=>{onBurAll()}}>Buy All</button> <strong>Total price: {itemPrice} $</strong></div>
+                <div className={css.cart__price}>
+                    <button onClick={()=>{onBuyAll()}}>Buy All</button>
+                    <strong>Total price: {itemPrice} $</strong></div>
             </div>
 
             <ul className={css.list}>
