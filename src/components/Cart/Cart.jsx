@@ -17,7 +17,7 @@ export const Cart: React.FC = () => {
     }
 
     const itemPrice = cartItems.reduce(
-        (totalEl, el) => totalEl + el.price,
+        (totalEl, el) => totalEl + el.price*el.count,
         0
     ).toFixed(2);
     return (
@@ -36,9 +36,10 @@ export const Cart: React.FC = () => {
                             <div className={css.item__image}><img  src={item.image} alt="Cover"/></div>
                             <div className={css.item__description}>
                                 <p>{item.title}</p>
-                                <p>{item.price} $</p>
+                                <p>{item.count ? item.count * item.price : item.price} $</p>
                             </div>
                             <div className={css.btn_group}>
+                                {item.count + "  "}
                                 <button onClick={()=>onRemoveFromCart(item.id)}>Buy</button>
                                 <button onClick={()=>onRemoveFromCart(item.id)}>Delete</button>
                             </div>

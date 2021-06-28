@@ -5,22 +5,41 @@ const REMOVE_ITEM_FROM_CART = "cart/REMOVE_ITEM_FROM_CART"
 const BUY_ALL = "cart/BUY_ALL"
 
 const InitialState = {
-    cartItems: [] as Array<ProductsType>
-}
+    cartItems: [] as Array<ProductsType>,
+    absoluteCount: 0
 
+}
 
 export const cartReducer = (state = InitialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case ADD_ITEM_TO_CART: {
-            const item = {
-                ...action.item,
-                id: Date.now()
+            const itemIndex = state.cartItems.findIndex(({id}) => id === action.id)
+
+            const item = state.cartItems[itemIndex]
+            console.log("item", {...item})
+            if (itemIndex !== -1) {
+                console.log("itemIndex", itemIndex)
+
+                return {
+                    ...state,
+                    cartItems: [...state.cartItems.slice(0, itemIndex), {
+                        ...item,
+                        count: ++item.count
+                    },
+                        ...state.cartItems.slice(itemIndex + 1),],
+
+                }
             }
             return {
                 ...state,
-                cartItems: [...state.cartItems, item]
+                cartItems: [...state.cartItems, {
+                    ...action.item,
+                    count: 1
+                }]
             }
         }
+
+
         case REMOVE_ITEM_FROM_CART:
             return {
                 ...state,
@@ -38,8 +57,8 @@ export const cartReducer = (state = InitialState, action: ActionsTypes): Initial
 }
 
 export const cartActions = {
-    addItemToCart: (item:ProductsType) => ({type: ADD_ITEM_TO_CART, item} as const),
-    removeItemFromCart: (itemId:number) => ({type: REMOVE_ITEM_FROM_CART, itemId} as const),
+    addItemToCart: (item: ProductsType, id: any) => ({type: ADD_ITEM_TO_CART, item, id} as const),
+    removeItemFromCart: (itemId: number) => ({type: REMOVE_ITEM_FROM_CART, itemId} as const),
     buyAll: () => ({type: BUY_ALL} as const)
 }
 

@@ -12,24 +12,26 @@ type PropsType = {
 export const Item: React.FC<PropsType> = ({item}) => {
     const dispatch = useDispatch()
 
-    const onAddToCart = (item:ProductsType)=>{
-        dispatch(cartActions.addItemToCart(item))
+    const onAddToCart = (item: ProductsType, id: any) => {
+        console.log("item, id", item.count)
+        dispatch(cartActions.addItemToCart(item, id))
     }
+
 
     return (
         <>
             <div className={css.item}>
-                <Link to={"/view-item/"+item.id}>
+                <Link to={"/view-item/" + item.id}>
                     <div className={css.image}><img src={item.image} alt="Cover"/></div>
                 </Link>
                 <div>
-                    <h2>Price: {item.price} $</h2>
+                    <h2>Price: { item.price} $</h2>
                 </div>
                 <div>
                     <Link to={"/view-item/" + item.id}>
                         <button>View</button>
                     </Link>
-                    <button onClick={()=>onAddToCart(item)}>Add to cart</button>
+                    <button onClick={() => onAddToCart(item, item.id)}>Add to cart</button>
                 </div>
                 <p>{item.title}</p>
             </div>
